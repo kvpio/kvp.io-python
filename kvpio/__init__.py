@@ -5,33 +5,31 @@ kvpio
 The core python bindings for [kvp.io](https://www.kvp.io)
 
 Accessing account information:
-```
-import kvpio
-kvpio.api_key = '123abc'
-account = kvpio.Account().get()
-```
+
+    #!python
+    import kvpio
+    kvpio.api_key = '123abc'
+    account = kvpio.Account().get()
 
 Writing to your bucker:
-```
-data = {
-    'foo': 123,
-    'bar': True,
-    'baz': {
-        'boo': 321,
-        'far': False,
-        'faz': [1, 2, 3]
+
+    #!python
+    data = {
+        'foo': 123,
+        'bar': True,
+        'baz': {
+            'boo': 321,
+            'far': False,
+            'faz': [1, 2, 3]
+        }
     }
-}
-bucket = kvpio.Bucket()
-bucket.set('my_key', data)
-```
+    bucket = kvpio.Bucket()
+    bucket.set('my_key', data)
 
 Reading from your bucket:
-```
-data = bucket.get('my_key/baz/faz')
 
-```
-
+    #!python
+    data = bucket.get('my_key/baz/faz')
 
 - `copyright` (c) 2016 by Steelhive, LLC
 - `license` MIT, see LICENSE for more details

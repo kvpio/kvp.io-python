@@ -1,24 +1,47 @@
 
-kvp.io is a micro-service designed to empower automation, in any cloud, in
-any data-center, with ease.
+`kvp.io <https://www.kvp.io>`_ is a micro-service designed to empower
+automation, in any cloud, in any data-center, with ease.
 
-kvp.io client
+kvp.io-python
 -------------
 
-A simple convenience utility for interacting with `kvp.io <https://www.kvp.io>`_.
+The python library and cli for `kvp.io <https://www.kvp.io>`_.
 
-See `kvp.io/docs <https://www.kvp.io/docs>`_ for detailed documentation.
+Installation
+------------
+
+``pip install kvpio-python``
+
+Documentation
+-------------
+
+See `kvp.io-python <https://kvpio.github.io/kvp.io-python-docs>`_ for the API
+docs.
+
+kvpio CLI
+---------
+
+The cli is a simple utility suitable for use by itself or in an automation
+pipeline.
+
+An API key must be provided via one of the following:
+
+    - at the command line with the ``--api-key`` switch
+    - as an environment variable name ``KVPIO_APIKEY``
+    - as a single line in the file ``~/.kvpio``
+
+**Usage:**
 
 .. code:: bash
 
     kvpio --help
     Usage: kvpio [OPTIONS] COMMAND [ARGS]...
 
-      kvpio v0.1.0
+      kvpio v0.1.5
 
       usage:
 
-        kvpio customer
+        kvpio account
 
         kvpio bucket    list|get|set|del
 
@@ -31,5 +54,5 @@ See `kvp.io/docs <https://www.kvp.io/docs>`_ for detailed documentation.
 
     Commands:
       bucket    Interact with key/value pairs.
-      customer  Get account information.
+      account   Get account information.
       template  Interact with templates.
