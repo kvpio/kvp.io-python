@@ -26,9 +26,9 @@ pipeline.
 
 An API key must be provided via one of the following:
 
-    - at the command line with the ``--api-key`` switch
-    - as an environment variable name ``KVPIO_APIKEY``
-    - as a single line in the file ``~/.kvpio``
+- at the command line with the ``--api-key`` switch
+- as an environment variable name ``KVPIO_APIKEY``
+- as a single line in the file ``~/.kvpio``
 
 **Usage:**
 
