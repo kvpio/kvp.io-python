@@ -1,13 +1,41 @@
+"""
+kvpio cli
+---------
+The command-line application for [kvp.io](https://www.kvp.io)
 
+Basic bucket usage:
+
+    $ export KVPIO_APIKEY=<your api key here>
+    $ kvpio bucket set foo bar
+    $ kvpio bucket get foo
+    bar
+
+Bucket with nested data:
+
+    $ kvpio bucket set foo '{"bar": {"baz": 123}}'
+    $ kvpio bucket get foo/bar/baz
+    123
+
+Basic template usage:
+
+    $ kvpio template set foo 'baz is equal to {{ foo.bar.baz }}'
+    $ kvpio template get foo
+    baz is equal to 123
+
+Get account information:
+
+    $ kvpio account
+    {"id": "kvp.io", "email": "support@kvp.io", "reads": 87, "size": 0}
+
+- `copyright` (c) 2016 by Steelhive, LLC
+- `license` MIT, see LICENSE for more details
+"""
 
 import os
 import sys
 import json
 import click
 import kvpio
-
-
-VERBOSE = False
 
 
 def print_result(result):
@@ -19,9 +47,7 @@ def print_result(result):
 
 
 @click.group()
-@click.option('--api-key', help='the kvp.io api key to use')
-@click.option('--verbose', help='turn on detailed output', is_flag=True)
-def cli(api_key, verbose):
+def cli():
     """
     kvpio v0.1.5
 
@@ -33,10 +59,8 @@ def cli(api_key, verbose):
 
         kvpio template  list|get|set|del
     """
-    global VERBOSE
 
-    if not api_key:
-        api_key = os.environ.get('KVPIO_APIKEY', None)
+    api_key = os.environ.get('KVPIO_APIKEY', None)
     if not api_key:
         if os.path.exists('~/.kvpio'):
             with open('~/.kvpio', 'r') as f:
@@ -47,12 +71,10 @@ def cli(api_key, verbose):
             'WARNING: No api key was provided. This means only READ \n' +
             'operations will be permitted on PUBLIC endpoints. You can \n' +
             'set an API key via the following:\n' +
-            '    with the command line option --api-key\n'+
             '    as an environment variable named KVPIO_APIKEY\n' +
             '    as a single line in the file ~/.kvpio\n'
         )
     kvpio.api_key = api_key
-    VERBOSE = verbose
 
 #
 # bucket commands
