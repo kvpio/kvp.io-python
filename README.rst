@@ -4,28 +4,25 @@ automation, in any cloud, in any data-center, with ease.
 
 kvp.io-python
 -------------
-
 The python library and cli for `kvp.io <https://www.kvp.io>`_.
 
 Installation
 ------------
-
 ``pip install kvpio-python``
 
 Tests
 -----
 Requires ``pytest`` and ``pytest-cov``.
+
 ``py.test --cov-report term --cov=kvpio``
 
 API Documentation
 -----------------
-
 See `kvp.io-python <https://kvpio.github.io/kvp.io-python-docs>`_ for the API
 docs.
 
 CLI Documentation
 -----------------
-
 The cli is a simple utility suitable for use by itself or in an automation
 pipeline.
 
