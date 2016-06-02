@@ -1,9 +1,7 @@
 
-.. image:: https://www.kvp.io/local/gfx/kvp-logo-black.png
-    :alt: kvp.io
-    :width: 64px
-    :height: 64px
-    :align: center
+.. raw::
+    <img src='https://www.kvp.io/local/gfx/kvp-logo-black.png'
+     alt='kvp.io logo' style='width:64px;height=64px'>
 
 `kvp.io <https://www.kvp.io>`_ is a micro-service designed to empower
 automation, in any cloud, in any data-center, with ease.
