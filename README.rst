@@ -78,12 +78,16 @@ Here are a few examples to get you familiar with the API.
 
 Accessing account information:
 
+.. code:: python
+
     import kvpio
     kvpio.api_key = '123abc'
     account = kvpio.Account().get()
     # {"id": "kvp.io", "email": "support@kvp.io", "reads": 87, "size": 124}
 
 Writing to your bucket:
+
+.. code:: python
 
     data = {
         'foo': 123,
@@ -98,6 +102,8 @@ Writing to your bucket:
     bucket.set('my_key', data)
 
 Reading nested data from your bucket:
+
+.. code:: python
 
     data = bucket.get('my_key/baz/faz')
     # [1, 2, 3]
