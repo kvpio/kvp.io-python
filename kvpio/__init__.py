@@ -45,7 +45,8 @@ import logging
 log = logging.getLogger(__name__)
 api_key = None
 api_ver = 'v1'
-api_base = 'https://api.kvp.io'
+# api_base = 'https://api.kvp.io'
+api_base = 'http://localhost:8000'
 http_methods = [
     'get',
     'post',
@@ -77,7 +78,7 @@ class Endpoint(object):
     def url(self):
         return '/'.join([api_base, api_ver, self.name])
 
-    def request(self, method, key=None, params=None, json=None):
+    def request(self, method, key='', params=None, json=None):
         """
         A simple request wrapper. Used by get, post, etc. methods.
 
@@ -97,7 +98,7 @@ class Endpoint(object):
         if method not in http_methods:
             raise Exception('Unsupported method attempted: {}'.format(method))
         response = getattr(requests, method)(
-            '{}/{}'.format(self.url, path),
+            '{}/{}'.format(self.url, key),
             params=params,
             json=json,
             auth=self.auth
@@ -233,7 +234,7 @@ class Templates(Endpoint):
         returns:
         - `tuple` status code, empty string
         """
-        return self.request('post', key, json=json)
+        return self.request('post', key, json=template)
 
     def delete(self, key):
         """Deletes a key and it's template document.

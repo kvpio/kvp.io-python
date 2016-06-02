@@ -5,7 +5,7 @@ automation, in any cloud, in any data-center, with ease.
 kvp.io-python
 -------------
 
-The python library and cli for `kvp.io <https://www.kvp.io>`_.
+The python (3.5) library and cli for `kvp.io <https://www.kvp.io>`_.
 
 Installation
 ------------

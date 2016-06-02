@@ -1,11 +1,21 @@
 
 
 import os
+import sys
+import json
 import click
 import kvpio
 
 
 VERBOSE = False
+
+
+def print_result(result):
+    code, response = result
+    if code == 200:
+        sys.stdout.write(response + '\n')
+    else:
+        sys.stderr.write(response + '\n')
 
 
 @click.group()
@@ -54,7 +64,8 @@ def account():
     """
     if not kvpio.api_key:
         click.echo('Please provide an API key.')
-    click.echo(
+        return
+    print_result(
         kvpio.Account().get()
     )
 
@@ -72,7 +83,7 @@ def bucket_list():
     """
     Retrieve a list of keys.
     """
-    click.echo(
+    print_result(
         kvpio.Bucket().list()
     )
 
@@ -85,7 +96,7 @@ def bucket_get(key):
     KEY may be a single word or a path of the form path/to/key to access
     nested values.
     """
-    click.echo(
+    print_result(
         kvpio.Bucket().get(key)
     )
 
@@ -130,52 +141,51 @@ def template_list():
     """
     Retrieve a list templates.
     """
-    click.echo(
+    print_result(
         kvpio.Templates().list()
     )
 
 @template.command('get')
 @click.argument('name')
-@click.option('--values', help='A dictionary, as a JSON string.')
+@click.option('--data', help='A dictionary, as a JSON string.')
 @click.option('--raw', is_flag=True, help='Return the template un-rendered.')
-def template_get(name, values, raw):
+def template_get(name, data, raw):
     """
     Retrieve and render the template at NAME
 
     Values for the template are retrieved from your bucket based on variable
     names found in template.
 
-    If the --values option specifics a valid JSON dictionary, it's values
-    will override those found in the bucket. This is useful for rendering
-    templates with non-persistent, one-time values.
+    If the --data option specifics valid JSON data, it's values will override
+    those found in the bucket. This is useful for rendering templates with
+    non-persistent, one-time values.
 
-    If the --raw flag is specified, the original, unrendered template is
+    If the --raw flag is specified, the original, un-rendered template is
     returned.
     """
     try:
-        values = json.loads(values)
+        data = json.loads(data)
     except:
-        values = {}
-
+        data = None
     if raw:
-        click.echo(
+        print_result(
             kvpio.Templates().get(name, raw=raw)
         )
     else:
-        click.echo(
-            kvpio.Templates().get(name, data=values)
+        print_result(
+            kvpio.Templates().get(name, data=data)
         )
 
 @template.command('set')
 @click.argument('name')
-@click.argument('value')
-def template_set(name, value):
+@click.argument('template')
+def template_set(name, template):
     """
-    Set NAME to the specified template VALUE.
+    Set NAME to the specified template TEMPLATE.
 
-    VALUE must be a string utilizing the Jinja2 template language.
+    TEMPLATE must be a string, optionally using the Jinja2 template language.
     """
-    kvpio.Templates().set(name, value)
+    kvpio.Templates().set(name, template)
 
 @template.command('del')
 @click.argument('name')
