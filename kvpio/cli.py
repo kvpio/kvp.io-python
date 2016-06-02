@@ -25,7 +25,7 @@ Basic template usage:
 Get account information:
 
     $ kvpio account
-    {"id": "kvp.io", "email": "support@kvp.io", "reads": 87, "size": 0}
+    {"id": "kvp.io", "email": "support@kvp.io", "reads": 87, "size": 124}
 
 - `copyright` (c) 2016 by Steelhive, LLC
 - `license` MIT, see LICENSE for more details

@@ -12,6 +12,7 @@ Accessing account information:
     import kvpio
     kvpio.api_key = '123abc'
     account = kvpio.Account().get()
+    # {"id": "kvp.io", "email": "support@kvp.io", "reads": 87, "size": 124}
 
 Writing to your bucket:
 
@@ -27,9 +28,10 @@ Writing to your bucket:
     bucket = kvpio.Bucket()
     bucket.set('my_key', data)
 
-Reading from your bucket:
+Reading nested data from your bucket:
 
     data = bucket.get('my_key/baz/faz')
+    # [1, 2, 3]
 
 """
 
