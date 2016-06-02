@@ -1,8 +1,8 @@
 
 .. image:: https://www.kvp.io/local/gfx/kvp-logo-black.png
     :alt: kvp.io
-    :width: 64
-    :height: 64
+    :width: 64px
+    :height: 64px
     :align: center
 
 `kvp.io <https://www.kvp.io>`_ is a micro-service designed to empower
