@@ -1,3 +1,4 @@
+.cache/
 *.egg
 *.log*
 *.py[cod]
