@@ -12,6 +12,11 @@ Installation
 
 ``pip install kvpio-python``
 
+Tests
+-----
+Requires ``pytest`` and ``pytest-cov``.
+``py.test --cov-report term --cov=kvpio``
+
 API Documentation
 -----------------
 
