@@ -1,8 +1,10 @@
-build.sh
 pycco-dark.css
-.cache/
+.coverage
 *.egg
 *.log*
 *.py[cod]
+dist/
+build/
+.cache/
 *.egg-info/
 __pycache__/

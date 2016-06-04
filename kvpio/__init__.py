@@ -48,7 +48,7 @@ api_key = None
 api_ver = 'v1'
 
 # The base url of the API, e.g., _https://api.kvp.io_
-api_base = 'http://localhost:8000'
+api_base = 'https://api.kvp.io'
 
 # Toggle auto-parsing of JSON, default: `False`
 load_json = False

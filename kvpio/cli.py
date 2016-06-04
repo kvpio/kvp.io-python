@@ -49,15 +49,21 @@ def print_result(result):
 @click.group()
 def cli():
     """
-    kvpio v0.1.5
+    kvpio v0.1.7
 
     usage:
 
         kvpio account
 
-        kvpio bucket    list|get|set|del
+        kvpio bucket    list | get | set | del
 
-        kvpio template  list|get|set|del
+        kvpio template  list | get | set | del
+
+    To get help on commands and sub-commands, type:
+
+        kvpio <command> --help
+
+        kvpio <command> <sub-command> --help
     """
 
     api_key = os.environ.get('KVPIO_APIKEY', None)

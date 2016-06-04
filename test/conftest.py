@@ -5,7 +5,7 @@ import pytest
 
 @pytest.fixture
 def valid_api_key():
-    return 'abc123'
+    return 'steelhive'
 
 @pytest.fixture
 def invalid_api_key():
