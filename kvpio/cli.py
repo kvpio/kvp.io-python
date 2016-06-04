@@ -51,11 +51,8 @@ def print_result(result):
 
 @click.group()
 @click.version_option(version=version)
-def cli(version):
+def cli():
     """
-    kvpio v0.1.8
-
-    usage:
 
         kvpio account
 
@@ -72,9 +69,10 @@ def cli(version):
 
     api_key = os.environ.get('KVPIO_APIKEY', None)
     if not api_key:
-        if os.path.exists('~/.kvpio'):
-            with open('~/.kvpio', 'r') as f:
-                api_key = f.read()
+        api_key_file = '{}/.kvpio'.format(os.path.expanduser('~'))
+        if os.path.exists(api_key_file):
+            with open(api_key_file, 'r') as f:
+                api_key = f.read().strip()
     if not api_key:
         print(
             '\n' +
@@ -134,19 +132,32 @@ def bucket_get(key):
 
 @bucket.command('set')
 @click.argument('key')
-@click.argument('value')
-def bucket_set(key, value):
+@click.argument('value', required=False)
+@click.option('--file', type=click.File('rb'), help='A file path from which data is read.')
+def bucket_set(key, value, file):
     """
-    Set KEY to the specified VALUE.
+    If VALUE is specified, set KEY to the specified literal value.
+
+    If --file is specified, set KEY to the data in FILENAME.
 
     KEY may be a single word or a path of the form path/to/key to set
     nested values.
     """
-    try:
-        value = json.loads(value)
-    except:
-        pass
-    kvpio.Bucket().set(key, value)
+    if file:
+        try:
+            value = json.loads(file.read().decode('utf-8'))
+        except Exception as e:
+            sys.exit(
+                'An error occured while reading the file: {}'.format(str(e))
+            )
+        kvpio.Bucket().set(key, value)
+    else:
+        try:
+            value = json.loads(value)
+        except:
+            pass
+        kvpio.Bucket().set(key, value)
+
 
 @bucket.command('del')
 @click.argument('key')
