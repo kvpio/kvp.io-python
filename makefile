@@ -1,5 +1,5 @@
 
-all: tests clean docs build release
+all: tests clean docs build release clean
 
 clean:
 	rm ./dist -fR

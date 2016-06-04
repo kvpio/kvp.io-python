@@ -38,6 +38,9 @@ import click
 import kvpio
 
 
+version = '0.1.8'
+
+
 def print_result(result):
     code, response = result
     if code == 200:
@@ -47,9 +50,10 @@ def print_result(result):
 
 
 @click.group()
-def cli():
+@click.version_option(version=version)
+def cli(version):
     """
-    kvpio v0.1.7
+    kvpio v0.1.8
 
     usage:
 
