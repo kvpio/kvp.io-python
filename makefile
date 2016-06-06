@@ -10,7 +10,7 @@ clean:
 	find . -name '*~' -exec rm -f {} +
 
 tests:
-	py.test --cov-report term --cov=kvpio
+	py.test --local --cov-report term --cov=kvpio
 
 docs:
 	rm ../kvp.io-python-docs/*

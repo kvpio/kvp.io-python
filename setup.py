@@ -8,7 +8,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 
 setup(
     name='kvpio-python',
-    version='0.1.8',
+    version='0.2.0',
     author='William Palmer',
     author_email='will@steelhive.com',
     description='Official kvp.io python bindings and client',

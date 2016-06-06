@@ -38,7 +38,7 @@ import click
 import kvpio
 
 
-version = '0.1.8'
+version = '0.2.0'
 
 
 def print_result(result):

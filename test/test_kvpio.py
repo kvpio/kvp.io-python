@@ -6,7 +6,8 @@ import kvpio
 kvpio.load_json = True
 
 
-def test_valid_account(valid_api_key):
+def test_valid_account(api_base, valid_api_key):
+    kvpio.api_base = api_base
     kvpio.api_key = valid_api_key
 
     code, res = kvpio.Account().get()
@@ -14,21 +15,25 @@ def test_valid_account(valid_api_key):
     assert type(res) == dict
     assert res.get('api_key', None) == None
 
-def test_invalid_account(invalid_api_key):
+def test_invalid_account(api_base, invalid_api_key):
+    kvpio.api_base = api_base
     kvpio.api_key = invalid_api_key
 
     code, res = kvpio.Account().get()
     assert code == 404
 
-def test_bucket_list(valid_api_key):
+def test_bucket_list(api_base, valid_api_key):
+    kvpio.api_base = api_base
     kvpio.api_key = valid_api_key
 
     code, res = kvpio.Bucket().list()
     assert code == 200
     assert type(res) == list
 
-def test_bucket_set_get_del(valid_api_key, bucket_data):
+def test_bucket_set_get_del(api_base, valid_api_key, bucket_data):
+    kvpio.api_base = api_base
     kvpio.api_key = valid_api_key
+
     bucket = kvpio.Bucket()
     key, val, access_key, expected_val = bucket_data
 
@@ -48,15 +53,18 @@ def test_bucket_set_get_del(valid_api_key, bucket_data):
     assert code == 200
     assert res == ''
 
-def test_template_list(valid_api_key):
+def test_template_list(api_base, valid_api_key):
+    kvpio.api_base = api_base
     kvpio.api_key = valid_api_key
 
     code, res = kvpio.Templates().list()
     assert code == 200
     assert type(res) == list
 
-def test_template_set_get_del(valid_api_key, template_data):
+def test_template_set_get_del(api_base, valid_api_key, template_data):
+    kvpio.api_base = api_base
     kvpio.api_key = valid_api_key
+
     template_key, template_val, bucket_key, bucket_val, result = template_data
     bucket = kvpio.Bucket()
     template = kvpio.Templates()
